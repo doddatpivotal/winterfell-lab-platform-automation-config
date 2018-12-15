@@ -4,7 +4,7 @@ opsman-configuration:
     vcenter:
       url: ((vsphere_vcenter.url))
       username: ((vsphere_vcenter.username))
-      password: ((vsphere_vcenter.password))
+      password: ((vsphere_vcenter_password))
       datastore: ((vsphere_vcenter.datastore))
       ca_cert: ((vsphere_vcenter.ca_cert)) # leave blank
       host: ((vsphere_vcenter.host))                     # vCenter host to deploy Ops Manager in
@@ -16,7 +16,7 @@ opsman-configuration:
     private_ip: ((vsphere_private_ip))
     dns: ((vsphere_dns))
     ntp: ((vsphere_ntp))                     # example: ntp.ubuntu.com
-    ssh_password: ((vsphere_ssh_password))
+    ssh_password: ((vsphere_vcenter_password))
     ssh_public_key: ((vsphere_ssh_public_key))           # for OpsManager >= 2.3
     hostname: ((vsphere_hostname))
     network: ((vsphere_network))                 # vcenter network to deploy to
