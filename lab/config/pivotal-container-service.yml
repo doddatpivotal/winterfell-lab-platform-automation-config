@@ -1,0 +1,152 @@
+product-name: pivotal-container-service
+product-properties:
+  .pivotal-container-service.pks_tls:
+    value:
+      cert_pem: ((pivotal_container_service_pks_tls_cert_pem))
+      private_key_pem: ((pivotal_container_service_pks_tls_private_key_pem))
+
+  ### if VSPHERE is to be selected, then uncomment and fill out the VSPHERE parameters below
+  ### otherwise, leave this section commented out to avoid Ops Manager parameter settings errors
+  .properties.cloud_provider.vsphere.vcenter_master_creds:
+    value:
+      identity: ((vcenter_username)) # vcenter_admin_username
+      password: ((vcenter_password)) # vcenter_admin_password
+  .properties.cloud_provider.vsphere.vcenter_ip:
+    value: ((vcenter_host))
+  .properties.cloud_provider.vsphere.vcenter_dc:
+    value: ((vcenter_datacenter))
+  .properties.cloud_provider.vsphere.vcenter_ds:
+    value: ((vcenter_datastore))
+  .properties.cloud_provider.vsphere.vcenter_vms:
+    value: ((vcenter_pcf_folder)) # The name should be the same as the VM Folder in the Ops Manager Director tile, under the vCenter config page.
+
+  .properties.cloud_provider:
+    value: ((cloud_provider))
+  .properties.network_selector:
+    value: flannel
+  .properties.pks-vrli:
+    value: disabled
+  .properties.pks_api_hostname:
+    value: ((pks_api_hostname))
+
+  .properties.plan1_selector:
+    value: Plan Active
+  .properties.plan1_selector.active.name:
+    value: "very-small-priv"  # the name that appears for end users to choose
+  .properties.plan1_selector.active.description:
+    value: "1 master, 1 worker with privileged containers"
+  .properties.plan1_selector.active.master_instances:
+    value: 1
+  .properties.plan1_selector.active.master_vm_type:
+    value: medium.disk
+  .properties.plan1_selector.active.master_persistent_disk_type:
+    value: "10240"
+  .properties.plan1_selector.active.master_az_placement:
+    value: [((az_1_name))]  # Specify the availability zones you want your master and ETCD nodes spread across equally. If only one master/ETCD has been selected, choose a single AZ for your singleton job.
+  .properties.plan1_selector.active.max_worker_instances:
+    value: 50
+  .properties.plan1_selector.active.worker_instances:
+    value: 1    # The number of K8s worker instances
+  .properties.plan1_selector.active.worker_vm_type:
+    value: medium.disk
+  .properties.plan1_selector.active.worker_persistent_disk_type:
+    value: "51200"
+  .properties.plan1_selector.active.worker_az_placement:
+    value: [((az_1_name))]  # Specify the availability zones you want your worker nodes spread across equally.
+  .properties.plan1_selector.active.errand_vm_type:
+    value: micro
+  .properties.plan1_selector.active.addons_spec:
+    value: "" # Kubernetes yml that contains specifications of addons to run on every cluster. This is an experimental feature. Please consider carefully before applying this to your plan
+  .properties.plan1_selector.active.allow_privileged_containers:
+    value: true  # Privileged containers run with host-like permissions. Allowing your users to deploy privileged containers in clusters using this plan can create security vulnerabilities and may impact other tiles. Use with caution.
+  .properties.plan1_selector.active.disable_deny_escalating_exec:
+    value: true  # This admission controller will deny exec and attach commands to pods that run with escalated privileges that allow host access. If checked, the admission controller will be disabled. Clusters in this plan can then create security vulnerabilities and may impact other tiles. Use with caution.
+
+  .properties.plan2_selector:
+    value: Plan Active
+  .properties.plan2_selector.active.name:
+    value: "very-small-non-priv"  # the name that appears for end users to choose
+  .properties.plan2_selector.active.description:
+    value: "1 master, 1 worker with non-privileged containers"
+  .properties.plan2_selector.active.master_instances:
+    value: 1
+  .properties.plan2_selector.active.master_vm_type:
+    value: medium.disk
+  .properties.plan2_selector.active.master_persistent_disk_type:
+    value: "10240"
+  .properties.plan2_selector.active.master_az_placement:
+    value: [((az_1_name))]  # Specify the availability zones you want your master and ETCD nodes spread across equally. If only one master/ETCD has been selected, choose a single AZ for your singleton job.
+  .properties.plan2_selector.active.max_worker_instances:
+    value: 50
+  .properties.plan2_selector.active.worker_instances:
+    value: 1    # The number of K8s worker instances
+  .properties.plan2_selector.active.worker_vm_type:
+    value: medium.disk
+  .properties.plan2_selector.active.worker_persistent_disk_type:
+    value: "51200"
+  .properties.plan2_selector.active.worker_az_placement:
+    value: [((az_1_name))]  # Specify the availability zones you want your worker nodes spread across equally.
+  .properties.plan2_selector.active.errand_vm_type:
+    value: micro
+  .properties.plan2_selector.active.addons_spec:
+    value: "" # Kubernetes yml that contains specifications of addons to run on every cluster. This is an experimental feature. Please consider carefully before applying this to your plan
+  .properties.plan2_selector.active.allow_privileged_containers:
+    value: false  # Privileged containers run with host-like permissions. Allowing your users to deploy privileged containers in clusters using this plan can create security vulnerabilities and may impact other tiles. Use with caution.
+  .properties.plan2_selector.active.disable_deny_escalating_exec:
+    value: false  # This admission controller will deny exec and attach commands to pods that run with escalated privileges that allow host access. If checked, the admission controller will be disabled. Clusters in this plan can then create security vulnerabilities and may impact other tiles. Use with caution.
+
+  .properties.plan3_selector:
+    value: Plan Inactive
+
+  .properties.proxy_selector:
+    value: Disabled
+  .properties.sink_resources:
+    value: true
+  .properties.syslog_selector:
+    value: disabled
+  .properties.telemetry_selector:
+    value: enabled
+  .properties.telemetry_selector.enabled.interval:
+    value: 600
+  .properties.telemetry_selector.enabled.telemetry_url:
+    value: https://vcsa.vmware.com
+  .properties.uaa:
+    value: internal
+  .properties.uaa_oidc:
+    value: false
+  .properties.uaa_pks_cli_access_token_lifetime:
+    value: 600
+  .properties.uaa_pks_cli_refresh_token_lifetime:
+    value: 21600
+  .properties.wavefront:
+    value: disabled
+  .properties.worker_max_in_flight:
+    value: 1
+network-properties:
+  network:
+    name: infrastructure
+  other_availability_zones:
+  - name: az1
+  service_network:
+    name: services
+  singleton_availability_zone:
+    name: az1
+resource-config:
+  pivotal-container-service:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+errand-config:
+  delete-all-clusters:
+    pre-delete-state: true
+  pks-nsx-t-precheck:
+    post-deploy-state: false
+  upgrade-all-service-instances:
+    post-deploy-state: true
+  wavefront-alert-creation:
+    post-deploy-state: false
+  wavefront-alert-deletion:
+    pre-delete-state: false
+

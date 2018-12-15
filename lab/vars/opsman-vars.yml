@@ -1,0 +1,21 @@
+vsphere_vcenter.url: 192.168.7.105
+vsphere_vcenter.username: administrator@vsphere.local
+vsphere_vcenter.password: ((vsphere_vcenter_password))
+vsphere_vcenter.datastore: datastore1
+vsphere_vcenter.ca_cert: # leave blank
+vsphere_vcenter.host: 192.168.7.131                     # vCenter host to deploy Ops Manager in
+vsphere_vcenter.datacenter: Datacenter
+vsphere_vcenter.resource_pool: pcf
+vsphere_vcenter.folder: /Datacenter/vm/pivotal_cf
+vsphere_vcenter.insecure: 1                            # 1 insecure, 0 secure
+vsphere_disk_type: thin                          # example: thin|thick
+vsphere_private_ip: 192.168.7.10
+vsphere_dns: 192.168.7.1
+vsphere_ntp: time.nist.gov                     # example: ntp.ubuntu.com
+vsphere_ssh_password: ((vsphere_vcenter_password))
+vsphere_ssh_public_key: ((vsphere_ssh_public_key))
+vsphere_hostname: opsmgr.lab.winterfell.live
+vsphere_network: "VM Network"                 # vcenter network to deploy to
+vsphere_netmask: 255.255.255.0
+vsphere_gateway: 192.168.7.1
+vsphere_vm_name: pivotal-ops-manager

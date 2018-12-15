@@ -1,0 +1,135 @@
+product-name: harbor-container-registry
+
+network-properties:
+  network:
+    name: ((network_properties_placement))
+  other_availability_zones:
+  - name: ((az_1_name))
+  singleton_availability_zone:
+    name: ((az_1_name))
+
+product-properties:
+
+  # General Tab
+  .properties.hostname:
+    value: ((product_properties_properties_hostname))
+  .properties.customize_container_network:
+    value: default
+
+  # Certificate Tab
+  .properties.server_cert_key:
+    value:
+      cert_pem: ((server_cert_pem))
+      private_key_pem: ((server_private_key_pem))
+
+  # Crednetials Tab
+  .properties.admin_password:
+    value:
+      secret: ((vsphere_vcenter_password))
+
+  ######## Authentication Mode
+  ### Options:
+  ### - db_auth        (Internal, i.e. Harbor internal user management)
+  ### - ldap_auth      (LDAP)
+  ### - uaa_auth_pks   (UAA in Pivotal Container Service)
+  ### - uaa_auth_pas   (UAA in Pivotal Application Service)
+  .properties.auth_mode:
+    value: db_auth
+
+  ### if "ldap_auth" is chosen for authentiaction mode, then uncomment and fill out the ldap parameters below
+  ### otherwise, leave this section commented out to avoid Ops Manager parameter settings errors
+  ###
+  ### The LDAP Endpoint URL.
+  # .properties.auth_mode.ldap_auth.url:
+  #   value: ( ( ldap_auth_url ) )
+  ### Verify LDAP server SSL certificate (flag) - true or false
+  # .properties.auth_mode.ldap_auth.verify_cert:
+  #   value: ( ( ldap_auth_verify_cert ) )
+  ### The DN of the user who has the permission to search the LDAP server.
+  # .properties.auth_mode.ldap_auth.searchdn:
+  #   value: ( ( ldap_auth_searchdn ) )
+  ### The password of the user who has the permission to search the LDAP server.
+  # .properties.auth_mode.ldap_auth.searchpwd:
+  #   value:
+  #     secret: ( ( ldap_auth_searchpwd ) )
+  ### The base DN from which to look up a user in LDAP server
+  # .properties.auth_mode.ldap_auth.basedn:
+  #   value: ( ( ldap_auth_basedn ) )
+  ### The attribute used in a search to match a user, it could be uid, cn, email, sAMAccountName or other attributes depending on your LDAP server
+  # .properties.auth_mode.ldap_auth.uid:
+  #   value: ( ( ldap_auth_uid ) )
+  ### Search filter for LDAP server. Make sure the syntax of the filter is correct
+  # .properties.auth_mode.ldap_auth.filter:
+  #   value: ( ( ldap_auth_filter ) )
+  ### The LDAP scope to search for users
+  ### Options:
+  ### - 0        (Base)
+  ### - 1        (nsx_networking_enabledevel)
+  ### - 2        (Subtree)
+  # .properties.auth_mode.ldap_auth.scope:
+  #   value: ( ( ldap_auth_scope ) )
+  ### The timeout (in seconds) when connecting to the LDAP Server
+  # .properties.auth_mode.ldap_auth.timeout:
+  #   value: ( ( ldap_auth_timeout ) )
+
+  ######## Container Registry Storage
+  ### Container Registry's filesystem
+  ### Options:
+  ### - filesystem     (Local File System)
+  ### - s3             (AWS S3)
+  .properties.registry_storage:
+    value: filesystem
+
+  ### if "s3" is chosen for Container Registry Storage, then uncomment and fill out the s3 parameters below
+  ### otherwise, leave this section commented out to avoid Ops Manager parameter settings errors
+  ###
+  ### S3 Access Key
+  # .properties.registry_storage.s3.access_key:
+  #   value: ( ( s3_registry_storage_access_key ) )
+  ### S3 Secret Key
+  # .properties.registry_storage.s3.secret_key:
+  #   value:
+  #     secret: ( ( s3_registry_storage_secret_key ) )
+  ### S3 Region
+  # .properties.registry_storage.s3.region:
+  #   value: ( ( s3_registry_storage_region ) )
+  ### S3 Endpoint URL of your S3-compatible file store
+  # .properties.registry_storage.s3.endpoint_url:
+  #   value: ( ( s3_registry_storage_endpoint_url ) )
+  ### S3 Bucket Name
+  # .properties.registry_storage.s3.bucket:
+  #   value: ( ( s3_registry_storage_bucket ) )
+  ### S3 Root Directory in the Bucket
+  # .properties.registry_storage.s3.root_directory:
+  #   value: ( ( s3_registry_storage_root_directory ) )
+
+  ######## Clair Settings
+  ### Determine if include Clair in the deployment to support vulnerability scanning (flag: true or false)
+  .properties.with_clair:
+    value: true
+  .properties.no_proxy:
+    value: 127.0.0.1,localhost,ui
+  .properties.clair_updater_interval:
+    value: 0
+
+  ######## with_notary Settings
+  ### Determine if include Notary in the deployment to support content trust (flag: true or false)
+  .properties.with_notary:
+    value: true
+
+resource-config:
+  harbor-app:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+  smoke-testing:
+    instances: automatic
+    instance_type:
+      id: automatic
+errand-config:
+  smoke-testing:
+    post-deploy-state: when-changed
+  uaa-deregistration:
+    pre-delete-state: false

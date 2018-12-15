@@ -1,0 +1,19 @@
+cloud_controller_apps_domain.value: apps.lab.winterfell.live
+cloud_controller_system_domain.value: sys.lab.winterfell.live
+control_static_ips.value: 192.168.7.32
+router_static_ips.value: 192.168.7.31
+
+mysql_monitor_recipient_email: dpfeffer@pivotal.io
+
+cloud_controller_encrypt_key.secret:
+
+properties_credhub_hsm_provider_client_certificate.cert_pem:
+properties_credhub_hsm_provider_client_certificate.private_key_pem:
+properties_credhub_hsm_provider_partition_password.secret:
+
+properties_credhub_key_encryption_passwords_0_key.secret: ((properties_credhub_key_encryption_passwords_0_key_secret))
+
+properties_smtp_credentials.identity:
+properties_smtp_credentials.password:
+
+uaa_service_provider_key_password.secret:

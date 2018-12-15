@@ -1,0 +1,25 @@
+az-configuration_az1_name: az1
+az-configuration_az1_cluster: Cluster1
+az-configuration_az1_resource_pool: pcf
+
+iaas-configuration_name: default
+iaas-configuration_vcenter_host: 192.168.7.105
+iaas-configuration_vcenter_username: administrator@vsphere.local
+iaas-configuration_vcenter_password: ((vsphere_vcenter_password))
+iaas-configuration_datacenter: Datacenter
+iaas-configuration_bosh_disk_path: pcf_disk
+iaas-configuration_bosh_template_folder: pcf_templates
+iaas-configuration_bosh_vm_folder: pcf_vms
+iaas-configuration_ephemeral_datastores_string: datastore1
+iaas-configuration_guid: #TODO
+iaas-configuration_persistent_datastores_string: datastore1
+
+network-configuration_common_cidr: 192.168.7.0/24
+network-configuration_common_dns: 192.168.7.1
+network-configuration_common_gateway: 192.168.7.1
+network-configuration_common_iaas_identifier: VM Network
+network-configuration_infra_subnets_reserved_ip_ranges: 192.168.7.0-192.168.7.10,192.168.7.30-192.168.7.255
+network-configuration_deployment_subnets_reserved_ip_ranges: 192.168.7.0-192.168.7.29,192.168.7.80-192.168.7.255
+network-configuration_services_subnets_reserved_ip_ranges: 192.168.7.0-192.168.7.159,192.168.7.180-192.168.7.255
+
+director-configuration_ntp_servers_string: time.nist.gov

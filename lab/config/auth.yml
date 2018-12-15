@@ -1,0 +1,4 @@
+---
+username: admin
+password: ((vsphere_vcenter_password))
+decryption-passphrase: ((vsphere_vcenter_password))

@@ -1,0 +1,104 @@
+az-configuration:
+- name: ((az-configuration_az1_name))
+  clusters:
+  - cluster: ((az-configuration_az1_cluster))
+    resource_pool: ((az-configuration_az1_resource_pool))
+  iaas_configuration_guid: 72eccc2a38050593beee
+
+iaas-configuration:
+  bosh_disk_path: ((iaas-configuration_bosh_disk_path))
+  bosh_template_folder: ((iaas-configuration_bosh_template_folder))
+  bosh_vm_folder: ((iaas-configuration_bosh_vm_folder))
+  datacenter: ((iaas-configuration_datacenter))
+  ephemeral_datastores_string: ((iaas-configuration_ephemeral_datastores_string))
+  guid: ((iaas-configuration_guid))
+  name: ((iaas-configuration_name))
+  nsx_networking_enabled: false
+  persistent_datastores_string: ((iaas-configuration_persistent_datastores_string))
+  ssl_verification_enabled: false
+  vcenter_host: ((iaas-configuration_vcenter_host))
+  vcenter_username: ((iaas-configuration_vcenter_username))
+  vcenter_password: ((iaas-configuration_vcenter_password))
+
+network-assignment:
+  network:
+    name: infrastructure
+  other_availability_zones: []
+  singleton_availability_zone:
+    name: ((az-configuration_az1_name))
+
+networks-configuration:
+  icmp_checks_enabled: true
+  networks:
+  - name: infrastructure
+    subnets:
+    - iaas_identifier: ((network-configuration_common_iaas_identifier))
+      cidr: ((network-configuration_common_cidr))
+      dns: ((network-configuration_common_dns))
+      gateway: ((network-configuration_common_gateway))
+      reserved_ip_ranges: ((network-configuration_infra_subnets_reserved_ip_ranges))
+      availability_zone_names:
+      - ((az-configuration_az1_name))
+  - name: deployment
+    subnets:
+    - iaas_identifier: ((network-configuration_common_iaas_identifier))
+      cidr: ((network-configuration_common_cidr))
+      dns: ((network-configuration_common_dns))
+      gateway: ((network-configuration_common_gateway))
+      reserved_ip_ranges: ((network-configuration_deployment_subnets_reserved_ip_ranges))
+      availability_zone_names:
+      - ((az-configuration_az1_name))
+  - name: services
+    subnets:
+    - iaas_identifier: ((network-configuration_common_iaas_identifier))
+      cidr: ((network-configuration_common_cidr))
+      dns: ((network-configuration_common_dns))
+      gateway: ((network-configuration_common_gateway))
+      reserved_ip_ranges: ((network-configuration_services_subnets_reserved_ip_ranges))
+      availability_zone_names:
+      - ((az-configuration_az1_name))
+
+director-configuration:
+  allow_legacy_agents: true
+  blobstore_type: local
+  bosh_recreate_on_next_deploy: false
+  bosh_recreate_persistent_disks_on_next_deploy: false
+  database_type: internal
+  director_worker_count: 5
+  encryption:
+    keys: []
+    providers: []
+  excluded_recursors: []
+  hm_emailer_options:
+    enabled: false
+  hm_pager_duty_options:
+    enabled: false
+  identification_tags: {}
+  keep_unreachable_vms: false
+  local_blobstore_options:
+    tls_enabled: true
+  ntp_servers_string: ((director-configuration_ntp_servers_string))
+  post_deploy_enabled: true
+  resurrector_enabled: true
+  retry_bosh_deploys: false
+
+resource-configuration:
+  compilation:
+    instances: automatic
+    instance_type:
+      id: automatic
+  director:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+
+security-configuration:
+  generate_vm_passwords: true
+
+syslog-configuration:
+  enabled: false
+
+vmextensions-configuration: []
+

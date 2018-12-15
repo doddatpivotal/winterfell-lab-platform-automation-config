@@ -1,0 +1,9 @@
+cloud_provider: vSphere
+pks_api_hostname: api.pks.lab.winterfell.live
+az_1_name: az1
+vcenter_username: administrator@vsphere.local
+vcenter_password: ((vsphere_vcenter_password))
+vcenter_host: 192.168.7.105
+vcenter_datacenter: Datacenter
+vcenter_datastore: datastore1
+vcenter_pcf_folder: pks_vms

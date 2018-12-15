@@ -1,0 +1,66 @@
+product-name: p-healthwatch
+product-properties:
+  .healthwatch-forwarder.boshhealth_instance_count:
+    value: 1
+  .healthwatch-forwarder.boshtasks_instance_count:
+    value: 2
+  .healthwatch-forwarder.canary_instance_count:
+    value: 2
+  .healthwatch-forwarder.cli_instance_count:
+    value: 2
+  .healthwatch-forwarder.health_check_az:
+    value: az1
+  .healthwatch-forwarder.ingestor_instance_count:
+    value: 4
+  .healthwatch-forwarder.opsman_instance_count:
+    value: 2
+  .healthwatch-forwarder.publish_to_eva:
+    value: true
+  .healthwatch-forwarder.worker_instance_count:
+    value: 4
+  .mysql.skip_name_resolve:
+    value: true
+  .properties.boshtasks:
+    value: disable
+  .properties.opsman:
+    value: enable
+  .properties.opsman.enable.url:
+    value: ((opsman.enable.url))
+  .properties.syslog_selector:
+    value: "No"
+network-properties:
+  network:
+    name: deployment
+  other_availability_zones:
+  - name: ((az-configuration_az1_name))
+  service_network:
+    name: services
+  singleton_availability_zone:
+    name: ((az-configuration_az1_name))
+resource-config:
+  healthwatch-forwarder:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+  mysql:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+  redis:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+errand-config:
+  delete-space:
+    pre-delete-state: true
+  push-apps:
+    post-deploy-state: true
+  smoke-tests:
+    post-deploy-state: true
+
