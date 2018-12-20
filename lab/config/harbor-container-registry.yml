@@ -25,7 +25,7 @@ product-properties:
   # Crednetials Tab
   .properties.admin_password:
     value:
-      secret: ((vsphere_vcenter_password))
+      secret: ((harbor_admin_password))
 
   ######## Authentication Mode
   ### Options:

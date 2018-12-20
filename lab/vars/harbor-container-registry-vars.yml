@@ -1,3 +1,4 @@
 az_1_name: az1
 network_properties_placement: infrastructure
 product_properties_properties_hostname: harbor.lab.winterfell.live
+harbor_admin_password: ((vsphere_vcenter_password))
