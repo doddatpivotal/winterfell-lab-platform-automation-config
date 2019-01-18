@@ -128,18 +128,18 @@ product-properties:
     value: ((uaa_ldap_search_base))
   .properties.uaa.ldap.search_filter:
     value: ((uaa_ldap_search_filter))
-  .properties.uaa.ldap.search_group_search_base:
-    value: ((uaa_ldap_search_group_search_base))
-  .properties.uaa.ldap.search_group_search_filter:
-    value: ((uaa_ldap_search_group_search_filter))
+  .properties.uaa.ldap.group_search_base:
+    value: ((uaa_ldap_group_search_base))
+  .properties.uaa.ldap.group_search_filter:
+    value: ((uaa_ldap_group_search_filter))
   .properties.uaa.ldap.first_name_attribute:
     value: ((uaa_ldap_first_name_attribute))
   .properties.uaa.ldap.last_name_attribute:
     value: ((uaa_ldap_last_name_attribute))
   .properties.uaa.ldap.mail_attribute_name:
     value: ((uaa_ldap_mail_attribute_name))
-  .properties.uaa.ldap.external_group_whitelist:
-    value: ((uaa_ldap_external_group_whitelist))
+  .properties.uaa.ldap.external_groups_whitelist:
+    value: ((uaa_ldap_external_groups_whitelist))
 
   .properties.wavefront:
     value: enabled
