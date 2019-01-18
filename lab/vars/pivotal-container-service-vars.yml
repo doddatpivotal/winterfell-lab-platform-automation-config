@@ -20,3 +20,4 @@ uaa_ldap_first_name_attribute: givenName
 uaa_ldap_last_name_attribute: sn
 uaa_ldap_mail_attribute_name: mail
 uaa_ldap_external_group_whitelist: pks_*
+
