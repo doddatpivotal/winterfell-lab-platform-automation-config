@@ -293,7 +293,7 @@ resource-config:
     instance_type:
       id: automatic
   compute:
-    instances: 3
+    instances: 2
     instance_type:
       id: automatic
   control:
