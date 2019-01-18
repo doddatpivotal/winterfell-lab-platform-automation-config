@@ -121,7 +121,7 @@ product-properties:
   .properties.wavefront.enabled.wavefront_api_url: 
     value: https://surf.wavefront.com/api
   .properties.wavefront.enabled.wavefront_token: 
-    value: ((wavefront_api_token))
+    value: "((wavefront_api_token))"
   .properties.wavefront.enabled.wavefront_alert_targets: 
     value: ((wavefront_alert_targets))
   .properties.worker_max_in_flight:
