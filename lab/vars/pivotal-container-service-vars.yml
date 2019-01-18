@@ -9,3 +9,14 @@ vcenter_datastore: datastore1
 vcenter_pcf_folder: pks_vms
 wavefront_api_token: ((wavefront_token))
 wavefront_alert_targets: dpfeffer@pivotal.io
+uaa_ldap_url: ldap://ldap.jumpcloud.com:389
+uaa_ldap_username: uid=servicebind,ou=Users,o=5c390cd9c556772e64d4fbb5,dc=jumpcloud,dc=com
+uaa_ldap_password: ((uaa_ldap_password))
+uaa_ldap_search_base: ou=Users,o=5c390cd9c556772e64d4fbb5,dc=jumpcloud,dc=com
+uaa_ldap_search_filter: (&(objectClass=inetOrgPerson)(uid={0}))
+uaa_ldap_search_group_search_base: ou=Users,o=5c390cd9c556772e64d4fbb5,dc=jumpcloud,dc=com
+uaa_ldap_search_group_search_filter: member={0}
+uaa_ldap_first_name_attribute: givenName
+uaa_ldap_last_name_attribute: sn
+uaa_ldap_mail_attribute_name: mail
+uaa_ldap_external_group_whitelist: pks_*
