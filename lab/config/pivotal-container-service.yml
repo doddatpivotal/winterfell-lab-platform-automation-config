@@ -100,14 +100,12 @@ product-properties:
 
   .properties.proxy_selector:
     value: Disabled
-  .properties.sink_resources:
-    value: true
+  .properties.sink_resources_selector:
+    value: enabled
   .properties.syslog_selector:
     value: disabled
   .properties.telemetry_selector:
     value: enabled
-  .properties.telemetry_selector.enabled.interval:
-    value: 600
   .properties.telemetry_selector.enabled.telemetry_url:
     value: https://vcsa.vmware.com
   .properties.uaa:
@@ -119,7 +117,13 @@ product-properties:
   .properties.uaa_pks_cli_refresh_token_lifetime:
     value: 21600
   .properties.wavefront:
-    value: disabled
+    value: enabled
+  .properties.wavefront.enabled.wavefront_api_url: 
+    value: https://surf.wavefront.com/api
+  .properties.wavefront.enabled.wavefront_token: 
+    value: ((wavefront_token))
+  .properties.wavefront.enabled.wavefront_alert_targets: 
+    value: ((wavefront_alert_targets))
   .properties.worker_max_in_flight:
     value: 1
 network-properties:
