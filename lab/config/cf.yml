@@ -212,27 +212,49 @@ product-properties:
   .properties.tcp_routing:
     value: disable
   .properties.uaa:
-    value: internal
-  .properties.uaa.internal.password_expires_after_months:
-    value: 0
-  .properties.uaa.internal.password_max_retry:
-    value: 5
-  .properties.uaa.internal.password_min_length:
-    value: 0
-  .properties.uaa.internal.password_min_lowercase:
-    value: 0
-  .properties.uaa.internal.password_min_numeric:
-    value: 0
-  .properties.uaa.internal.password_min_special:
-    value: 0
-  .properties.uaa.internal.password_min_uppercase:
-    value: 0
-  .properties.uaa_database:
-    value: internal_mysql
-  .properties.uaa_session_cookie_max_age:
-    value: 28800
-  .properties.uaa_session_idle_timeout:
-    value: 1800
+    value: ldap
+  .properties.uaa.ldap.url:
+    value: ((uaa_ldap_url))
+  .properties.uaa.ldap.credentials:
+    value:
+      identity: ((uaa_ldap_username))
+      password: ((uaa_ldap_password))
+  .properties.uaa.ldap.search_base:
+    value: ((uaa_ldap_search_base))
+  .properties.uaa.ldap.search_filter:
+    value: ((uaa_ldap_search_filter))
+  .properties.uaa.ldap.group_search_base:
+    value: ((uaa_ldap_group_search_base))
+  .properties.uaa.ldap.group_search_filter:
+    value: ((uaa_ldap_group_search_filter))
+  .properties.uaa.ldap.first_name_attribute:
+    value: ((uaa_ldap_first_name_attribute))
+  .properties.uaa.ldap.last_name_attribute:
+    value: ((uaa_ldap_last_name_attribute))
+  .properties.uaa.ldap.mail_attribute_name:
+    value: ((uaa_ldap_mail_attribute_name))
+  
+  # The following are only relevent if you choose uaa.value = internal
+  # .properties.uaa.internal.password_expires_after_months:
+  #   value: 0
+  # .properties.uaa.internal.password_max_retry:
+  #   value: 5
+  # .properties.uaa.internal.password_min_length:
+  #   value: 0
+  # .properties.uaa.internal.password_min_lowercase:
+  #   value: 0
+  # .properties.uaa.internal.password_min_numeric:
+  #   value: 0
+  # .properties.uaa.internal.password_min_special:
+  #   value: 0
+  # .properties.uaa.internal.password_min_uppercase:
+  #   value: 0
+  # .properties.uaa_database:
+  #   value: internal_mysql
+  # .properties.uaa_session_cookie_max_age:
+  #   value: 28800
+  # .properties.uaa_session_idle_timeout:
+  #   value: 1800
   .router.disable_insecure_cookies:
     value: false
   .router.drain_wait:
