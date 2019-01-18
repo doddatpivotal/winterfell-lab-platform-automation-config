@@ -120,7 +120,7 @@ product-properties:
   .properties.enable_log_cache:
     value: true
   .properties.garden_disk_cleanup:
-    value: threshold
+    value: routine
   .properties.gorouter_ssl_ciphers:
     value: ECDHE-RSA-AES128-GCM-SHA256:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
   .properties.haproxy_client_cert_validation:
