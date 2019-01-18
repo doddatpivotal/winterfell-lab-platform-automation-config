@@ -7,5 +7,5 @@ vcenter_host: 192.168.7.105
 vcenter_datacenter: Datacenter
 vcenter_datastore: datastore1
 vcenter_pcf_folder: pks_vms
-wavefront_api_token: ((wavefront_token))
+wavefront_api_token: "((wavefront_token))"
 wavefront_alert_targets: dpfeffer@pivotal.io
