@@ -5,21 +5,6 @@ az-configuration:
     resource_pool: ((az-configuration_az1_resource_pool))
   iaas_configuration_guid: 72eccc2a38050593beee
 
-iaas-configuration:
-  bosh_disk_path: ((iaas-configuration_bosh_disk_path))
-  bosh_template_folder: ((iaas-configuration_bosh_template_folder))
-  bosh_vm_folder: ((iaas-configuration_bosh_vm_folder))
-  datacenter: ((iaas-configuration_datacenter))
-  ephemeral_datastores_string: ((iaas-configuration_ephemeral_datastores_string))
-  guid: ((iaas-configuration_guid))
-  name: ((iaas-configuration_name))
-  nsx_networking_enabled: false
-  persistent_datastores_string: ((iaas-configuration_persistent_datastores_string))
-  ssl_verification_enabled: false
-  vcenter_host: ((iaas-configuration_vcenter_host))
-  vcenter_username: ((iaas-configuration_vcenter_username))
-  vcenter_password: ((iaas-configuration_vcenter_password))
-
 network-assignment:
   network:
     name: infrastructure
@@ -58,29 +43,48 @@ networks-configuration:
       availability_zone_names:
       - ((az-configuration_az1_name))
 
-director-configuration:
-  allow_legacy_agents: true
-  blobstore_type: local
-  bosh_recreate_on_next_deploy: false
-  bosh_recreate_persistent_disks_on_next_deploy: false
-  database_type: internal
-  director_worker_count: 5
-  encryption:
-    keys: []
-    providers: []
-  excluded_recursors: []
-  hm_emailer_options:
+properties-configuration: 
+  director_configuration:
+    allow_legacy_agents: true
+    blobstore_type: local
+    bosh_recreate_on_next_deploy: false
+    bosh_recreate_persistent_disks_on_next_deploy: false
+    database_type: internal
+    director_worker_count: 5
+    encryption:
+      keys: []
+      providers: []
+    excluded_recursors: []
+    hm_emailer_options:
+      enabled: false
+    hm_pager_duty_options:
+      enabled: false
+    identification_tags: {}
+    keep_unreachable_vms: false
+    local_blobstore_options:
+      tls_enabled: true
+    ntp_servers_string: ((director-configuration_ntp_servers_string))
+    post_deploy_enabled: true
+    resurrector_enabled: true
+    retry_bosh_deploys: false
+  iaas_configuration:
+    bosh_disk_path: ((iaas-configuration_bosh_disk_path))
+    bosh_template_folder: ((iaas-configuration_bosh_template_folder))
+    bosh_vm_folder: ((iaas-configuration_bosh_vm_folder))
+    datacenter: ((iaas-configuration_datacenter))
+    ephemeral_datastores_string: ((iaas-configuration_ephemeral_datastores_string))
+    guid: ((iaas-configuration_guid))
+    name: ((iaas-configuration_name))
+    nsx_networking_enabled: false
+    persistent_datastores_string: ((iaas-configuration_persistent_datastores_string))
+    ssl_verification_enabled: false
+    vcenter_host: ((iaas-configuration_vcenter_host))
+    vcenter_username: ((iaas-configuration_vcenter_username))
+    vcenter_password: ((iaas-configuration_vcenter_password))
+  security_configuration:
+    generate_vm_passwords: true
+  syslog_configuration:
     enabled: false
-  hm_pager_duty_options:
-    enabled: false
-  identification_tags: {}
-  keep_unreachable_vms: false
-  local_blobstore_options:
-    tls_enabled: true
-  ntp_servers_string: ((director-configuration_ntp_servers_string))
-  post_deploy_enabled: true
-  resurrector_enabled: true
-  retry_bosh_deploys: false
 
 resource-configuration:
   compilation:
@@ -93,12 +97,6 @@ resource-configuration:
       size_mb: automatic
     instance_type:
       id: automatic
-
-security-configuration:
-  generate_vm_passwords: true
-
-syslog-configuration:
-  enabled: false
 
 vmextensions-configuration: []
 
